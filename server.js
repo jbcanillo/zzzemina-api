@@ -20,7 +20,7 @@ connectDB();
 
 // CORS configuration
 const corsOptions = {
-  origin: "http://localhost:5173", // The origin of your frontend (adjust the port if necessary)
+  origin: process.env.FRONTEND_URL, 
   methods: ["GET", "POST", "PUT", "DELETE"],
   allowedHeaders: ["Content-Type", "Authorization"],
   credentials: true, // Allow cookies to be sent if needed
@@ -45,5 +45,8 @@ app.get('/', (req, res) => {
   res.send('Welcome to Zzzmenia API!');
 });
 
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+// Disabled as its not possible on vercel due to it uses serverless function for deploying node app
+// const PORT = process.env.PORT || 5000;
+// app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+
+export default app;
