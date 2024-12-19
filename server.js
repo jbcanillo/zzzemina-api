@@ -20,7 +20,7 @@ connectDB();
 
 // CORS configuration
 const corsOptions = {
-  origin: process.env.FRONTEND_URL, // The origin of your frontend (adjust the port if necessary)
+  origin: "http://localhost:5173", // The origin of your frontend (adjust the port if necessary)
   methods: ["GET", "POST", "PUT", "DELETE"],
   allowedHeaders: ["Content-Type", "Authorization"],
   credentials: true, // Allow cookies to be sent if needed
@@ -40,6 +40,10 @@ app.use("/api/auth", authRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/seminars", seminarRoutes);
 app.use("/api/bookings", bookingRoutes);
+
+app.get('/', (req, res) => {
+  res.send('Welcome to Zzzmenia API!');
+});
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
